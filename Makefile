@@ -54,10 +54,20 @@ fclean: clean
 re: fclean all
 
 run: all
-	@echo "\033[32m[Running Binary]\033[0m" | tr -d '\n'
+	@echo "\033[32m[Running Binary Collen]\033[0m" | tr -d '\n'
 	@echo ""
-	@./$(NAME_S) 4242
-	@./$(NAME_C) 127.0.0.1 4242
-	@make clean
+	./$(NAME_C) > tmp_Colleen ; diff tmp_Colleen $(COL) ; rm tmp_Colleen
+	@echo "\033[32m[Running Binary Grace]\033[0m" | tr -d '\n'
+	@echo ""
+	./$(NAME_G); diff Grace_kid.c $(GRA) ; rm Grace_kid.c
+	@echo "\033[32m[Running Binary Sully and creating Sullys in Sully/maked]\033[0m" | tr -d '\n'
+	@echo ""
+	mkdir -p Sully/maked && cd Sully/maked && cp ../Sully . && ./Sully && \
+	ls -al | grep Sully | wc -l
+	@echo "\033[32m[Differenting files]\033[0m" | tr -d '\n'
+	-cd Sully/maked && diff ../Sully.c Sully_0.c ;
+	-cd Sully/maked && diff Sully_3.c Sully_2.c ;
+	@echo "\033[32m[Cleaning a bit]\033[0m" | tr -d '\n'
+	rm -r Sully/maked && make fclean
 
 .PHONY: clean fclean re
